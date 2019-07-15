@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * @author: hxy
  * @description: 文章相关Controller
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/article")
+@Api("文章接口")
 public class ArticleController {
 
 	@Autowired
@@ -26,6 +30,7 @@ public class ArticleController {
 	 */
 	@RequiresPermissions("article:list")
 	@GetMapping("/listArticle")
+	@ApiOperation(value = "文章列表" ,  notes="文章列表")
 	public JSONObject listArticle(HttpServletRequest request) {
 		return articleService.listArticle(CommonUtil.request2Json(request));
 	}
@@ -35,6 +40,7 @@ public class ArticleController {
 	 */
 	@RequiresPermissions("article:add")
 	@PostMapping("/addArticle")
+	@ApiOperation(value = "添加文章" ,  notes="添加文章")
 	public JSONObject addArticle(@RequestBody JSONObject requestJson) {
 		CommonUtil.hasAllRequired(requestJson, "content");
 		return articleService.addArticle(requestJson);
@@ -45,6 +51,7 @@ public class ArticleController {
 	 */
 	@RequiresPermissions("article:update")
 	@PostMapping("/updateArticle")
+	@ApiOperation(value = "修改文章" ,  notes="修改文章")
 	public JSONObject updateArticle(@RequestBody JSONObject requestJson) {
 		CommonUtil.hasAllRequired(requestJson, "id,content");
 		return articleService.updateArticle(requestJson);

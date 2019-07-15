@@ -12,7 +12,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @description: SpringBoot启动类
  * @date: 2017/10/24 11:55
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.heeexy.example")
 @MapperScan("com.heeexy.example.dao")
 public class MyApplication extends SpringBootServletInitializer {
 
